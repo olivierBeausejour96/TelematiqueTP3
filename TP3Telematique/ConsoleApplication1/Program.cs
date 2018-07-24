@@ -14,6 +14,7 @@ namespace TP3
             new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53),
             new IPEndPoint(IPAddress.Parse("8.8.4.4"), 53)
         };
+        static IPEndPoint udesDNSEndpoint = new IPEndPoint(IPAddress.Parse("10.44.82.8"), 53);
         delegate void task();
         static void Main(string[] args)
         {
@@ -30,12 +31,40 @@ namespace TP3
                 }
             };
 
+
+
             task ClientTask = () =>
             {
                 var client = new UdpClient();
                 IPEndPoint ep = googleDNSEndpoints[0];
                 client.Connect(ep);
-                string data = "";
+                string data = "6google3com0";
+                Console.WriteLine("Type data to send. Enter 'q' or 'Q' to exit");
+
+                List<DNSQuestion> queries = new List<DNSQuestion>();
+                queries.Add(new DNSQuestion("www.dotnetperls.com"));
+                DNSPacket packet = new DNSPacket(queries);
+
+                var ba = packet.toByteArray();
+
+                // send data
+                client.Send(ba, ba.Length);
+
+                // then receive data
+                var receivedData = client.Receive(ref ep);
+
+                packet = new DNSPacket(receivedData);
+
+                Console.WriteLine("Client Receive data from " + ep.ToString() + ": \n");
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.Write(String.Format("{0,1:D}", receivedData[i]));
+                    if (i != 4-1)
+                    {
+                        Console.Write(".");
+                    }
+                }
+                Console.WriteLine();
                 while (data.ToLower() != "q")
                 {
                     Console.WriteLine("Type data to send. Enter 'q' or 'Q' to exit");
@@ -45,7 +74,7 @@ namespace TP3
                     client.Send(data.ToCharArray().Select(c => (byte)c).ToArray(), data.Length);
 
                     // then receive data
-                    var receivedData = client.Receive(ref ep);
+                    receivedData = client.Receive(ref ep);
 
                     Console.WriteLine("Client Receive data from " + ep.ToString() + ": " + new string(receivedData.Select(b => (char)b).ToArray()));
                 }
