@@ -1,0 +1,6 @@
+C:\Users\beao3002\Desktop\TelematiqueTP3\TP3Telematique\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\beao3002\Desktop\TelematiqueTP3\TP3Telematique\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\beao3002\Desktop\TelematiqueTP3\TP3Telematique\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\beao3002\Desktop\TelematiqueTP3\TP3Telematique\ConsoleApplication1\obj\Debug\TP3Telematique.csprojResolveAssemblyReference.cache
+C:\Users\beao3002\Desktop\TelematiqueTP3\TP3Telematique\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\beao3002\Desktop\TelematiqueTP3\TP3Telematique\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
