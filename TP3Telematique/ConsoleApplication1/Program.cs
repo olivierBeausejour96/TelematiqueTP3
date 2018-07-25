@@ -42,7 +42,7 @@ namespace TP3
                 Console.WriteLine("Type data to send. Enter 'q' or 'Q' to exit");
 
                 List<DNSQuestion> queries = new List<DNSQuestion>();
-                queries.Add(new DNSQuestion("www.dotnetperls.com"));
+                queries.Add(new DNSQuestion("www.usherbrooke.ca"));
                 DNSPacket packet = new DNSPacket(queries);
 
                 var ba = packet.toByteArray();
@@ -54,6 +54,25 @@ namespace TP3
                 var receivedData = client.Receive(ref ep);
 
                 packet = new DNSPacket(receivedData);
+
+                IPAddress theAddress;
+
+                for (int i = 0; i < packet.Answers.Count; i++)
+                {
+                    if (packet.Answers[i].type != 1)
+                        continue;
+                    string addr = "";
+                    for (int j = 0; j < packet.Answers[i].data.Length; j++)
+                    {
+                        addr += ((int)packet.Answers[i].data[j]).ToString();
+                        if (j != packet.Answers[i].data.Length-1)
+                        {
+                            addr += ".";
+                        }
+                    }
+                    theAddress = IPAddress.Parse(addr);
+                    break;
+                }
 
                 Console.WriteLine("Client Receive data from " + ep.ToString() + ": \n");
                 for (int i = 0; i < 4; i++)

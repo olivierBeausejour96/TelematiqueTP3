@@ -16,13 +16,12 @@ namespace TP3
         UInt16 AuthorityRRs;
         UInt16 AdditionalRRs;
         List<DNSQuestion> Queries;
-        List<DNSAnswer> Answers;
+        public List<DNSAnswer> Answers;
 
         public DNSPacket(List<DNSQuestion> queries)
         {
             TransactionID = 0;
             Flags = 0x0100;
-            Flags |= 1 << 7;
             Queries = queries;
             Questions = (UInt16)Queries.Count;
         }
@@ -100,7 +99,7 @@ namespace TP3
             ba = BitConverter.GetBytes(Flags);
             for (int i = 0; i < ba.Length; i++)
             {
-                ret[ind++] = ba[i];
+                ret[ind++] = ba[1-i];
             }
 
             ba = BitConverter.GetBytes(Questions);

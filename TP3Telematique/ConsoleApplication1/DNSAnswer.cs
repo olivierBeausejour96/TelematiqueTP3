@@ -9,11 +9,11 @@ namespace TP3
     public class DNSAnswer
     {
         string name;
-        UInt16 type;
+        public UInt16 type;
         UInt16 addressclass;
         UInt16 TTL;
         UInt16 DataLength;
-        byte[] ipaddr;
+        public byte[] data;
 
         public DNSAnswer(byte[] ba, ref int ind)
         {
@@ -61,11 +61,11 @@ namespace TP3
                 Console.WriteLine("Something weird happened");
             }
 
-            ipaddr = new byte[DataLength];
+            data = new byte[DataLength];
 
             for (int i = 0; i < DataLength; i++)
             {
-                ipaddr[i] = ba[ind++];
+                data[i] = ba[ind++];
             }
         }
     }
