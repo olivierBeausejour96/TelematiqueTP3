@@ -72,5 +72,12 @@ namespace TP3
             ret[ind++] = 1;
             return ret;
         }
+
+        public void print()
+        {
+            Console.WriteLine("name {0}", name);
+            Console.WriteLine("type {0}", type);
+            Console.WriteLine("addressclass {0}", addressclass);
+        }
     }
 }

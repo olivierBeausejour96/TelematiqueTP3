@@ -68,5 +68,15 @@ namespace TP3
                 data[i] = ba[ind++];
             }
         }
+
+        public void print()
+        {
+            Console.WriteLine("name {0}", name);
+            Console.WriteLine("type {0}", type);
+            Console.WriteLine("addressclass {0}", addressclass);
+            Console.WriteLine("TTL {0}", TTL);
+            Console.WriteLine("DataLength {0}", DataLength);
+            Console.WriteLine("data {0}", data);
+        }
     }
 }

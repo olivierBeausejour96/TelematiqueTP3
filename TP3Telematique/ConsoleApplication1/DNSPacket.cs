@@ -24,6 +24,7 @@ namespace TP3
             Flags = 0x0100;
             Queries = queries;
             Questions = (UInt16)Queries.Count;
+            Answers = new List<DNSAnswer>();
         }
 
         public DNSPacket(byte[] ba)
@@ -134,6 +135,39 @@ namespace TP3
                 }
             }
             return ret;
+        }
+
+        public void print()
+        {
+            /*
+            UInt16 TransactionID;
+            UInt16 Flags;
+            UInt16 Questions;
+            UInt16 AnswerRRs;
+            UInt16 AuthorityRRs;
+            UInt16 AdditionalRRs;
+            List<DNSQuestion> Queries;
+        public List<DNSAnswer> Answers;
+        */
+            Console.WriteLine("TransactionID: {0}", TransactionID);
+            Console.WriteLine("Flags: {0}", Flags);
+            Console.WriteLine("Questions: {0}", Questions);
+            Console.WriteLine("AnswerRRs: {0}", AnswerRRs);
+            Console.WriteLine("AuthorityRRs: {0}", AuthorityRRs);
+            Console.WriteLine("AdditionalRRs: {0}", AdditionalRRs);
+            Console.WriteLine("*** Queries ***");
+            foreach (var item in Queries)
+            {
+                item.print();
+            }
+            Console.WriteLine("***************");
+
+            Console.WriteLine("*** Answers ***");
+            foreach (var item in Answers)
+            {
+                item.print();
+            }
+            Console.WriteLine("***************");
         }
     }
 }
